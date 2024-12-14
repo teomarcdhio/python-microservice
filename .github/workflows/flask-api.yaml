@@ -11,10 +11,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: python3 -m pip install -r requirements.txt
-      - run: python3 main.py
-      - run: echo "Basic test wiht Curl"
-      - run: curl http://localhost:5000
+      - run: python3 -m pytest
   Container_and_Push:
+    needs: Build_and_Test
     runs-on: ubuntu-latest
     steps:
       -

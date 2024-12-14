@@ -20,5 +20,8 @@ Build the container using the local Dockerfile
 Run the container on your local machine exposing port 5000 to your host port 5000    
 `docker run -p 5000:5000 flask-api:0.0.1`    
 
+## Github actions
+Every commit to the repo will trigger a build, test, containerisation and push to dockerhub.   
+
 ## Notes
 Running on debug mode for verbose logging while testing ; ideally we woudl want some args passed tot he python app to define the run mode ( argparse ).    
