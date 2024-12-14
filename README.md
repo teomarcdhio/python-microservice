@@ -25,3 +25,20 @@ Every commit to the repo will trigger a build, test, containerisation and push t
 
 ## Notes
 Running on debug mode for verbose logging while testing ; ideally we woudl want some args passed tot he python app to define the run mode ( argparse ).    
+
+## Helm deployment
+The current deploymnet is expecting an Ingress Load Balancer controller.  
+
+For TLS deploymnet, get a certificate and create the secret   
+`kubectl create secret tls poc-nivetek-com --namespace flask-api --key privkey.pem --cert fullchain.pem`    
+
+Edit the value file and add the cert path to the ingress TLS block    
+
+Edit the values file on the alb annotation subnets; add two public subnet ids from your target cluster vpc as below     
+`alb.ingress.kubernetes.io/subnets: subnet-058238a2692dd7eff, subnet-00531735de31acf5f`     
+
+Create a namespace    
+`kubectl create ns flask-api`   
+
+Install the chart   
+`helm install flask-api flask-api -n flask-api`
