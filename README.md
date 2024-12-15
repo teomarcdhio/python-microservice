@@ -23,6 +23,10 @@ Run the container on your local machine exposing port 5000 to your host port 500
 ## Github actions
 Every commit to the repo will trigger a build, test, containerisation and push to dockerhub.   
 
+A deploy workflow deploys the helm chart on a target eks cluster ( see helm deployment notes ).    
+
+The two workflows coudl be chained so for every commit a build is made and the deploymnet is triggered ( workflow callign workflow ) .   
+
 ## Notes
 Running on debug mode for verbose logging while testing ; ideally we woudl want some args passed tot he python app to define the run mode ( argparse ).    
 
