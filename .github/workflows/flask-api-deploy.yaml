@@ -1,6 +1,6 @@
 name: Deploy flask-api on EKS
 run-name: Deploy flask-api on EKS
-on: [push]
+on: workflow_dispatch
 jobs:
   Deploy:
     runs-on: ubuntu-latest
@@ -25,5 +25,10 @@ jobs:
         run: aws eks --region eu-west-2 update-kubeconfig --name poc-eks
       
       - name: Get Namespace
-        run: kubectl get ns
+        run: kubectl create ns flask-api
+      
+      - name: Deploy chart
+        run: |
+          cd helm
+          helm install flask-api flask-api -n flask-api
 
