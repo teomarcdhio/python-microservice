@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: flask-api 
+  name: flask-api-role
+rules:
+- apiGroups: [""] 
+  resources: ["pods","secrets"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: flask-api-role-binding
+  namespace: flask-api
+subjects:
+- kind: ServiceAccount
+  name: flask-api
+  apiGroup: ""
+roleRef:
+  kind: Role 
+  name: flask-api-role 
+  apiGroup: ""

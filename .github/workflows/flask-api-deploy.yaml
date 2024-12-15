@@ -26,6 +26,9 @@ jobs:
       
       - name: Create Namespace
         run: kubectl create ns flask-api  || echo "Namespace exists already"
+
+      - name: Create Role and Role-binding
+        run: kubectl apply -f rbac_manifests/role_role_binding.yaml -n flask-api  || echo "Role and rolebinding exists already"
       
       - name: Deploy chart
         run: |
