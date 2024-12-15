@@ -15,14 +15,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Configure AWS credentials POC eks
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: eu-west-2
           aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
         
       - name: Get eks config 
-        run: aws eks --region eu-west-1 update-kubeconfig --name poc-eks
+        run: aws eks --region eu-west-2 update-kubeconfig --name poc-eks
       
       - name: Get Namespace
         run: kubectl get ns
