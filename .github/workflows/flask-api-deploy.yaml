@@ -24,9 +24,8 @@ jobs:
       - name: Get eks config 
         run: aws eks --region eu-west-2 update-kubeconfig --name poc-eks
       
-      - name: Get Namespace
-        if: always()
-        run: kubectl create ns flask-api
+      - name: Create Namespace
+        run: kubectl create ns flask-api  || echo "Namespace exists already"
       
       - name: Deploy chart
         run: |
